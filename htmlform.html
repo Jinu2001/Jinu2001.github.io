@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Form</title>
+    <link rel="stylesheet" href="form.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";//import the connection
+        import { getDatabase,set,ref } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyDMkiDgwWoPViLMCrZo9kaG3U8gNJfqfYU",
+          authDomain: "jinu-51a83.firebaseapp.com",
+          databaseURL: "https://jinu-51a83-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "jinu-51a83",
+          storageBucket: "jinu-51a83.appspot.com",
+          messagingSenderId: "698839528320",
+          appId: "1:698839528320:web:8b9b07d29adac0cdb18765",
+          measurementId: "G-WR9J8PMGTV"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db=getDatabase(app);
+        const analytics = getAnalytics(app);
+        
+
+      //read & write data  
+      document.getElementById("userform").addEventListener("submit", function(e){
+            e.preventDefault();
+            let userId = document.getElementById('id').value;
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let overview=document.getElementById('textarea').value;
+            set(ref(db, 'users/' + userId), {
+                username: name,
+                email: email,
+                project_overview:overview,
+        });
+        alert("Submitted succesfully");
+    });
+
+      
+      </script>
+      <div class="form-outer">
+        <form action="get" id="userform"> 
+          <fieldset class="form-inner">
+              <legend><h3>Submit your details</h3></legend>
+              <span>Id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" id="id"></span><br><br>
+              <span>Name: <input type="text" id="name" required></span><br><br>
+              <span>Email: <input type="email" id="email"></span><br><br>
+              <span>overview of the project:</span> <textarea name="text" id="textarea" cols="30" rows="10"></textarea> <br>
+              <div class="blank"></div> <br>
+              <input type="submit" value="submit" onclick="validateForm()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="reset" value="reset">
+          </fieldset>
+          
+        </form>
+      </div>
+    
+</body>
+</html>

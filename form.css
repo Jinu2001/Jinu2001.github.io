@@ -1,0 +1,22 @@
+.form-outer{
+    border:5px solid navy;
+    border-radius:5%;
+    text-align: center;
+    width:480px;
+    height:auto;
+    padding:5%;
+    background-color:aliceblue;
+    margin:7% 30% 7% 30%;
+}
+.form-inner{
+    width:400px;
+    background-color:lightblue;
+}
+
+legend{
+    text-align: center;
+}
+legend h3{
+    text-transform: uppercase;
+    color: navy;
+}
